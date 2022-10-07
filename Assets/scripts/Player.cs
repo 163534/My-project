@@ -21,7 +21,8 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetBool("stand", false);
         anim.SetBool("walk", false);
-        
+        anim.SetBool("jump", false);
+        anim.SetBool("attack", false);
 
     }
 
@@ -46,8 +47,6 @@ public class Player : MonoBehaviour
             //transform position = new Vector2(transform.position.x, transform.position.y + (speedTime.deltaTime) );
             rb.velocity = new Vector2(0, 4);
             
-            anim.SetBool("jump", true);
-            
         }
         
          
@@ -64,17 +63,16 @@ public class Player : MonoBehaviour
         if (Input.GetKey("right"))
         {
             rb.velocity = new Vector2(2, 0);
-
             anim.SetBool("walk", true);
-           
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
             
         }
 
         if (Input.GetKey("left"))
         {
             rb.velocity = new Vector2(-2, 0);
-
             anim.SetBool("walk", true);
+            gameObject.transform.localScale=new Vector3(-1, 1, 1);
             
 
         }
@@ -82,9 +80,19 @@ public class Player : MonoBehaviour
 
         // check for idle
         if ((Input.GetKey("right") == false && Input.GetKey("left") == false))
-        {   
-
+        {
+            anim.SetBool("walk", false);
             anim.SetBool("stand", true);
+        }
+
+        if (touchingPlatform)
+        {
+            anim.SetBool("jump", false);
+           
+        }
+        if (!touchingPlatform)
+        {
+            anim.SetBool("jump", true);
         }
 
     }
@@ -94,7 +102,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             touchingPlatform = true;
-            anim.SetBool("jump", false);
+            
             
         }
     }
@@ -105,7 +113,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             touchingPlatform = false;
-            anim.SetBool("walk", false);
+            
         }
     }
 
