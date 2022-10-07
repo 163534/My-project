@@ -2,22 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Security.Cryptography;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update\\
+    public GameObject bullet;
+
+    // makes code in the helper script useable \\
+    HelpScript helper;
     Rigidbody2D rb;
     private Animator anim;
     public int speed;
     bool touchingPlatform;
-    bool isJumping;
     
+    
+
+
     void Start()
     {
-        
+        // uses code from the helper script using "helper" \\
+        helper = gameObject.AddComponent<HelpScript>();
         rb = GetComponent<Rigidbody2D>();
+
         speed = 1;
+
+        //uses the Animator component as anim \\
         anim = GetComponent<Animator>();
         anim.SetBool("stand", false);
         anim.SetBool("walk", false);
@@ -30,8 +41,32 @@ public class Player : MonoBehaviour
     void Update()
     {
         ReadKeys();
-        
 
+        int moveDirection = 1;
+
+       if (helper.GetFlipDirection())
+        {
+            moveDirection = -1;
+        }
+
+        
+       // fires bullets \\
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            // Instantiate the bullet at the position and roatation of the player \\
+            GameObject clone;
+            clone = Instantiate(bullet, transform.position, transform.rotation);
+
+            // get the rigidbody componet \\
+            Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
+
+            // set velocity \\
+            rb.velocity = new Vector3(10 * moveDirection, 0, 0);
+
+            // set the position close to the player \\
+            rb.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z + 1);
+        }
         
     }
 
@@ -64,7 +99,9 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(2, 0);
             anim.SetBool("walk", true);
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            helper.FlipObject(false);
+
+            // gameObject.transform.localScale = new Vector3(1, 1, 1);
             
         }
 
@@ -72,7 +109,9 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(-2, 0);
             anim.SetBool("walk", true);
-            gameObject.transform.localScale=new Vector3(-1, 1, 1);
+            helper.FlipObject(true);
+
+            // gameObject.transform.localScale=new Vector3(-1, 1, 1);
             
 
         }
@@ -116,6 +155,7 @@ public class Player : MonoBehaviour
             
         }
     }
+
 
 }
 
