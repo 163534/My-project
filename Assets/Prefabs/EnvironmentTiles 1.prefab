@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 692366551212860942}
   - component: {fileID: 5327422843414715221}
   - component: {fileID: -5349294646154153509}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnvironmentTiles 1
   m_TagString: Platform
   m_Icon: {fileID: 0}

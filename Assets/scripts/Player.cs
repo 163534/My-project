@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame\\
     void Update()
     {
+        helper.DoRayCollisionCheck();
         ReadKeys();
 
         int moveDirection = 1;
@@ -76,15 +77,22 @@ public class Player : MonoBehaviour
 
         //rb.velocity = new Vector2(0, 0);\\
 
-        if (Input.GetKeyDown("up") && touchingPlatform)
+        if (Input.GetKeyDown("up") && helper.isGrounded)
         {
             //print("player pressed up");
             //transform position = new Vector2(transform.position.x, transform.position.y + (speedTime.deltaTime) );
             rb.velocity = new Vector2(0, 4);
             
         }
-        
-         
+        if (helper.isGrounded)
+        {
+            anim.SetBool("jump", false);
+        }
+        if(!helper.isGrounded)
+        {
+            anim.SetBool("jump", true);
+        }
+
         if (Input.GetKey("c"))
         {
            
@@ -124,37 +132,18 @@ public class Player : MonoBehaviour
             anim.SetBool("stand", true);
         }
 
-        if (touchingPlatform)
+        if(helper.isGrounded)
         {
             anim.SetBool("jump", false);
-           
         }
-        if (!touchingPlatform)
+        if(!helper.isGrounded)
         {
             anim.SetBool("jump", true);
         }
 
     }
 
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Platform")
-        {
-            touchingPlatform = true;
-            
-            
-        }
-    }
-
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Platform")
-        {
-            touchingPlatform = false;
-            
-        }
-    }
+   
 
 
 }
