@@ -338,7 +338,7 @@ TextureImporter:
       name: HeroKnight_8
       rect:
         serializedVersion: 2
-        x: 34
+        x: 35
         y: 79
         width: 28
         height: 39
@@ -382,10 +382,10 @@ TextureImporter:
         serializedVersion: 2
         x: 210
         y: 79
-        width: 50
-        height: 39
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 86
+        height: 41
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -398,27 +398,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HeroKnight_11
-      rect:
-        serializedVersion: 2
-        x: 252
-        y: 98
-        width: 44
-        height: 22
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bb327a89940c164488b0808a1bba4ae1
-      internalID: -628128625
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: HeroKnight_12
       rect:
         serializedVersion: 2
@@ -426,8 +405,8 @@ TextureImporter:
         y: 12
         width: 43
         height: 35
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.77, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -447,8 +426,8 @@ TextureImporter:
         y: 9
         width: 45
         height: 39
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.77, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -468,8 +447,8 @@ TextureImporter:
         y: 9
         width: 45
         height: 39
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.77, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -489,8 +468,8 @@ TextureImporter:
         y: 9
         width: 45
         height: 39
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.77, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -510,8 +489,8 @@ TextureImporter:
         y: 9
         width: 45
         height: 39
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.77, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

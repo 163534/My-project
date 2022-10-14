@@ -6,39 +6,68 @@ using UnityEngine.EventSystems;
 
 public class EnemyScript : MonoBehaviour
 {
+    LayerMask groundLayerMask;
     Rigidbody2D rb;
     int moveDirection;
+    float rayLength;
+    float moveSpeed;
     public GameObject bullet;
-    public GameObject Player;
+   // public GameObject Player;
     float x;
     float y;
+    bool isPatrolling;
 
     // Start is called before the first frame update
     void Start()
     {
-        x = Player.transform.position.x;
-        y = Player.transform.position.y;
+        //  x = Player.transform.position.x;
+        //  y = Player.transform.position.y;
 
+        rayLength = 0.5f;
+        moveSpeed = 2;
+        moveDirection = 1;
+        isPatrolling = true;    
         rb = GetComponent<Rigidbody2D>();
-        
+        groundLayerMask = GetComponent<LayerMask>();
 
 
     }
 
-    /* Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
-        Movement();
+        Patrol();
     }
 
-    void Movement()
+    void Patrol()
     { 
-      int moveDirection = -1;
+        if (isPatrolling)
+        {
+            RaycastHit2D left = Physics2D.Raycast(transform.position, Vector2.left, rayLength, groundLayerMask);
+            RaycastHit2D right = Physics2D.Raycast(transform.position, Vector2.right, rayLength, groundLayerMask);
 
-      rb.velocity = new Vector2(10 * moveDirection, gameObject.transform.position.y);
+            Color hitColor = Color.white;
+            Debug.DrawRay(transform.position, Vector2.left * rayLength, hitColor);
+            Debug.DrawRay(transform.position, Vector2.right * rayLength, hitColor);
+
+            rb.velocity = new Vector2(moveSpeed * moveDirection, transform.position.y);
+
+            if (right.collider != null)
+            {
+                hitColor = Color.red;
+                moveDirection = -1;
+            }
+            if (left.collider != null)
+            {
+                hitColor = Color.red;
+                moveDirection = 1;
+            }  
+        }
+
+      
 
 
     }
-     */
+     
 
 }

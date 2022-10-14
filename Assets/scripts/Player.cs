@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetBool("stand", false);
         anim.SetBool("walk", false);
-        anim.SetBool("jump", false);
         anim.SetBool("attack", false);
 
     }
@@ -66,7 +65,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector3(10 * moveDirection, 0, 0);
 
             // set the position close to the player \\
-            rb.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z + 1);
+            rb.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z + 1);
         }
         
     }
@@ -84,14 +83,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(0, 4);
             
         }
-        if (helper.isGrounded)
-        {
-            anim.SetBool("jump", false);
-        }
-        if(!helper.isGrounded)
-        {
-            anim.SetBool("jump", true);
-        }
+      
 
         if (Input.GetKey("c"))
         {
@@ -99,9 +91,6 @@ public class Player : MonoBehaviour
             anim.SetBool("attack", true);
             
         }
-       
-
-        
 
         if (Input.GetKey("right"))
         {
@@ -132,14 +121,7 @@ public class Player : MonoBehaviour
             anim.SetBool("stand", true);
         }
 
-        if(helper.isGrounded)
-        {
-            anim.SetBool("jump", false);
-        }
-        if(!helper.isGrounded)
-        {
-            anim.SetBool("jump", true);
-        }
+        
 
     }
 

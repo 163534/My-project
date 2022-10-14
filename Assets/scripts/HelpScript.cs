@@ -6,14 +6,14 @@ public class HelpScript : MonoBehaviour
 {
     public Player p;
     LayerMask groundLayerMask;
-    float rayLength;
     public bool isGrounded;
+   
     public Animator anim;
     void Start()
     {
         groundLayerMask = LayerMask.GetMask("Ground");
-        isGrounded = false;
-
+        
+        anim = GetComponent<Animator>();
         
     }
 
@@ -43,31 +43,31 @@ public class HelpScript : MonoBehaviour
 
     public void DoRayCollisionCheck()
     {
-        float rayLength =0.2f;
+        float rayLength =0.15f;
 
-        // cast a ray downward of length 1 \\
+                                                                                                                // cast a ray downward of length 1 \\
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, rayLength, groundLayerMask);
 
         Color hitColor = Color.white;
+        isGrounded = false;
 
         if ( hit.collider != null)
         {
             hitColor = Color.red;
             isGrounded = true;
         }
-        // draw a debug ray position \\
-        // you need to enable gizmos in the editor to see these \\
-         Debug.DrawRay(transform.position, -Vector2.up * rayLength, hitColor);
+                                                                                                                       // draw a debug ray position \\
+                                                                                                              // you need to enable gizmos in the editor to see these \\
+         Debug.DrawRay(transform.position, -Vector2.up * rayLength, hitColor); 
         
         if (isGrounded)
         {
-            anim.SetBool("jump", false);
+           anim.SetBool("jump", false);
         }
         else
         {
-            anim.SetBool("jump", true);
+           anim.SetBool("jump", true);
         }
-
 
     }
      
