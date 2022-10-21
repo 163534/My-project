@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
             
 
         }
-
+        
 
         // check for idle
         if ((Input.GetKey("right") == false && Input.GetKey("left") == false))

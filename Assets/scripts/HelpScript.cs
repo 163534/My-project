@@ -7,8 +7,8 @@ public class HelpScript : MonoBehaviour
     public Player p;
     LayerMask groundLayerMask;
     public bool isGrounded;
-   
     public Animator anim;
+
     void Start()
     {
         groundLayerMask = LayerMask.GetMask("Ground");

@@ -12,7 +12,7 @@ public class EnemyScript : MonoBehaviour
     float rayLength;
     float moveSpeed;
     public GameObject bullet;
-   // public GameObject Player;
+    // public GameObject Player;
     float x;
     float y;
     bool isPatrolling;
@@ -24,11 +24,11 @@ public class EnemyScript : MonoBehaviour
         //  y = Player.transform.position.y;
 
         rayLength = 0.5f;
-        moveSpeed = 2;
+        moveSpeed = 0.5f;
         moveDirection = 1;
-        isPatrolling = true;    
+        isPatrolling = true;
         rb = GetComponent<Rigidbody2D>();
-        groundLayerMask = GetComponent<LayerMask>();
+        groundLayerMask = LayerMask.GetMask("Ground");
 
 
     }
@@ -40,7 +40,7 @@ public class EnemyScript : MonoBehaviour
     }
 
     void Patrol()
-    { 
+    {
         if (isPatrolling)
         {
             RaycastHit2D left = Physics2D.Raycast(transform.position, Vector2.left, rayLength, groundLayerMask);
@@ -51,7 +51,6 @@ public class EnemyScript : MonoBehaviour
             Debug.DrawRay(transform.position, Vector2.right * rayLength, hitColor);
 
             rb.velocity = new Vector2(moveSpeed * moveDirection, transform.position.y);
-
             if (right.collider != null)
             {
                 hitColor = Color.red;
@@ -59,15 +58,15 @@ public class EnemyScript : MonoBehaviour
             }
             if (left.collider != null)
             {
-                hitColor = Color.red;
+                hitColor = Color.green;
                 moveDirection = 1;
-            }  
+            }
         }
-
-      
-
-
     }
+}      
+
+
+    
      
 
-}
+
